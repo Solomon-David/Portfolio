@@ -15,7 +15,7 @@ img {
 
 <script setup>
 const props = defineProps({
-  link: URL,
+  link: String,
   image: String,
   title: String,
 });

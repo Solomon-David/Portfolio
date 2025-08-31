@@ -16,6 +16,18 @@ import mobileIcon from "@assets/mobile.svg";
 import desktopIcon from "@assets/desktop.svg";
 import othersIcon from "@assets/others.svg";
 
+//vue components
+import { ref, useTemplateRef, onMounted, inject } from "vue";
+
+//list of sections
+const sections = [
+  useTemplateRef("hero"),
+  useTemplateRef("about"),
+  useTemplateRef("skills"),
+  useTemplateRef("projects"),
+  useTemplateRef("experiences"),
+];
+
 //defining skill objects and skill array
 const frontend = {
   icon: frontendIcon,
@@ -97,12 +109,22 @@ const experiences = [
     ],
   },
 ];
+
+// for mounted codes
+let navobserver = inject("navobserver");
+const changeSection = inject("changeSection");
+
+onMounted(() => {
+  sections.forEach((section) => {
+    navobserver.observe(section.value.$el);
+  });
+});
 </script>
 
 <template [style]="./../style.css">
   <main>
     <!-- Hero section -->
-    <section id="hero" class="hero">
+    <regular-section id="hero" ref="hero" class="hero">
       <div class="intros">
         <p class="intro">Hello, I'm <span>Solomon</span>David</p>
         <ChangingText fixed="Developer" :options="['web', 'mobile', 'desktop']" />
@@ -116,12 +138,12 @@ const experiences = [
       </div>
 
       <div class="contactme">
-        <button>contact me</button>
+        <button @click="changeSection('footer')">contact me</button>
       </div>
-    </section>
+    </regular-section>
 
     <!-- About section -->
-    <floating-card-section id="about">
+    <floating-card-section id="about" ref="about">
       <section-heading>about me</section-heading>
       <article>
         <p>I am <b>SolomonDavid Akesobia</b> by name.</p>
@@ -129,19 +151,46 @@ const experiences = [
           I am based in the city of Port Harcourt, <b>Nigeria</b>, but open to remote
           projects.
         </p>
-        <p>I have a B.Sc in <b>Computer Science</b> from the Rivers State University.</p>
-        <p>I am both a team player and a lone wolf when it comes to solving problems.</p>
+        <p>
+          I began my development journey in <b>2018</b> when I started learning C++ in a
+          bid to understand the science behind how applications were built. Being mostly
+          interested in applications, I learned Java and later ventured into native
+          <b>Android</b> application development for a while before having to switch to
+          web development due to technological constraints.
+        </p>
+        <p>
+          As a web developer, I was always drawn more to logic than asthetics and soon
+          began learning backend development with NodeJS and Express. I ventured into full
+          stack development and dabbled in the MEAN stack until a project necessitated me
+          learning Vue, after which I fell in love with Vue's power and simplicity. Ever
+          since, I had stuck to the MEVN tech stack.
+        </p>
+        <p>
+          In a bid to expand my horizons, I tried my hand with ElectronJS for desktop
+          applications and NativeScript for mobile development. Dissatisfied with
+          Electron's performance tradeoffs and NativeScript's lack of maturity, I replaced
+          them with JavaFX and Kotlin respectively for a while, returning back to my JVM
+          roots. However, simultaneously learning multiple frameworks for different
+          platforms was tedious and so I needed to change my tech stack yet again. That's
+          when I discovered Flutter and stuck to it: a decision I am yet to regret!
+        </p>
+        <p>
+          Aside from being a developer, I have a B.Sc in <b>Computer Science</b> from the
+          Rivers State University.
+        </p>
+        <p>My hobbies include gaming, gymnastics, swimming, and reading.</p>
       </article>
     </floating-card-section>
 
     <!-- Skills -->
-    <regular-section id="skills">
+    <regular-section id="skills" ref="skills">
       <section-heading subtitle="Here are some of my most prominent skills."
         >skills</section-heading
       >
       <div class="skills">
         <SkillArticle
           v-for="skill in skills"
+          :key="skill.title"
           :icon="skill.icon"
           :title="skill.title"
           :skills="skill.skills"
@@ -150,11 +199,11 @@ const experiences = [
     </regular-section>
 
     <!-- Projects -->
-    <floating-card-section id="projects">
+    <floating-card-section id="projects" ref="projects">
       <section-heading subtitle="Here are some projects I have worked on over the years."
         >projects</section-heading
       >
-      <div class="projects">
+      <div class="projects scrollable">
         <ProjectComponent
           v-for="project in projects"
           :title="project.title"
@@ -167,7 +216,7 @@ const experiences = [
       </div>
     </floating-card-section>
 
-    <regular-section id="experiences">
+    <regular-section id="experiences" ref="experiences">
       <section-heading subtitle="A few organizations I have worked with over the years">
         Experiences
       </section-heading>
@@ -187,7 +236,7 @@ const experiences = [
 
 <style scoped>
 main {
-  padding: 1vh 1rem 10vh;
+  padding: 15vh 1rem 10vh;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -296,7 +345,7 @@ section {
   display: flex;
   justify-content: start;
   gap: 5vw;
-  overflow: scroll;
+  overflow-x: scroll;
 }
 
 /* Experiences */

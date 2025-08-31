@@ -1,114 +1,144 @@
 <script setup>
-    import {ref} from "vue";
+import { inject, ref, onMounted, watchEffect, useTemplateRef } from "vue";
 
-    const mobile = ref(visualViewport.width < 500);
-    
-    
+const mobile = ref(visualViewport.width < 500);
 
-    let open = ref(false);
+// toggling the menu
+let open = ref(false);
+const toggleMenu = () => {
+  open.value = !open.value;
+};
 
-    const toggleMenu = () => {
-        open.value = !open.value;
-    }
+//using current section
+const nav = useTemplateRef("nav");
+const currentSection = inject("currentSection");
 
+const emit = defineEmits(["open"]);
+
+watchEffect(() => {
+  emit("open", open.value);
+});
+
+onMounted(async () => {
+  watchEffect(() => {
+    nav.value.childNodes.forEach((el) => {
+      if (el.href.split("#")[1] == currentSection.value) {
+        el.classList.add("current");
+      } else {
+        el.classList.remove("current");
+      }
+    });
+  });
+});
 </script>
 
 <template>
-    <div id="navcomponent">            
-        <div id="menu" v-if="mobile">
-            <button @click="toggleMenu">
-              <span v-if="!open"><img src="@assets/menu.svg" alt="hamburger menu to open navigation bar"/> </span>
-              <span v-if="open"><img src="@assets/Close.svg" alt="X shaped button to close navigation bar"/></span>
-            </button>
-        </div>
-
-        <Transition name="slide">
-        <nav v-show="open || !mobile">
-            <a href="#hero">Home</a>
-            <a href="#">About</a>
-            <a href="#">Skills</a>
-            <a href="#">Projects</a>
-            <a href="#">Experience</a>
-            <a href="#">Contact</a>
-        </nav>
-        </Transition>
+  <div id="navcomponent">
+    <div id="menu" v-if="mobile">
+      <button @click="toggleMenu">
+        <span v-if="!open"
+          ><img src="@assets/menu.svg" alt="hamburger menu to open navigation bar" />
+        </span>
+        <span v-if="open"
+          ><img src="@assets/Close.svg" alt="X shaped button to close navigation bar"
+        /></span>
+      </button>
     </div>
 
+    <Transition name="slide">
+      <nav v-show="open || !mobile" ref="nav">
+        <a @click="open = false" href="#hero">Home</a>
+        <a @click="open = false" href="#about">About</a>
+        <a @click="open = false" href="#skills">Skills</a>
+        <a @click="open = false" href="#projects">Projects</a>
+        <a @click="open = false" href="#experiences">Experience</a>
+        <a @click="open = false" href="#footer">Contact</a>
+      </nav>
+    </Transition>
+  </div>
 </template>
 
 <style scoped>
-    #navcomponent {
-        display: flex;
-        flex-direction: column;
-        align-items: end;
-        flex-basis: 40vw;
-        flex-grow: 5;
-        flex-shring: 1;
-    }
+#navcomponent {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  gap: 3vh;
+}
 
-    #menu button {
-        background:none;
-        border:none;
-        cursor:pointer;
-        padding:0.1rem;
-    }
+#menu button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.1rem;
+}
 
-    #menu button img{
-        width: 2rem;
-        aspect-ratio: 1/1;
-    }
+#menu button img {
+  width: 2rem;
+  aspect-ratio: 1/1;
+}
 
-    nav {
-        display: flex;
-        flex-direction: column;
-        gap: 1.5rem;
-        align-items: right;
-        
-    }
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: var(--background);
+  padding-left: 5vw;
+  padding-bottom: 2vh;
+  border-radius: 16px;
+  align-items: end;
+}
 
-    nav a {
-        text-align: right;
-        text-decoration: none;
-        line-height: 1rem;
-        font-weight: var(--semibold);
-    }
+nav a {
+  text-align: left;
+  text-decoration: none;
+  line-height: 1rem;
+  font-weight: var(--semibold);
+}
 
-    nav a:hover {
-        text-decoration: underline;
-        text-decoration-thickness: 3px;
-        text-underline-offset: 10px;
-        text-decoration-color: var(--color);
-    }
- 
+.current {
+  color: var(--primary);
+  font-weight: bold;
+}
 
-    .slide-enter-from, .slide-leave-to {
-        transform-origin: top;
-        transform: scaleY(0%);
-        opacity: 0;
-    }
+nav a:hover {
+  text-decoration: underline;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 10px;
+  text-decoration-color: var(--color);
+}
 
-    .slide-leave-from, .slide-enter-to {
-        transform-origin: top;
-        opacity: 1;
-        transform: scaleY(100%);
-    }
+.slide-enter-from,
+.slide-leave-to {
+  transform-origin: top;
+  transform: scaleY(0%);
+  opacity: 0;
+}
 
-    .slide-enter-active, .slide-leave-active {
-        transition: all 0.3s ease;
-    }
+.slide-leave-from,
+.slide-enter-to {
+  transform-origin: top;
+  opacity: 1;
+  transform: scaleY(100%);
+}
+
+.slide-enter-active,
+.slide-leave-active {
+  transition: all 0.3s ease;
+}
 
 @media (min-width: 500px) {
-    #navcomponent {
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        align-self: center;
-    }
+  #navcomponent {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+  }
 
-    nav{
-        flex-direction: row;
-        gap: 2rem;
-        align-items: center;
-    }
+  nav {
+    flex-direction: row;
+    gap: 2rem;
+    align-items: center;
+  }
 }
 </style>

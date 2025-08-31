@@ -1,40 +1,26 @@
 <script setup>
-// import { ref, useTemplateRef, onMounted } from "vue";
+import { useTemplateRef, onMounted, onUnmounted, inject } from "vue";
 const props = defineProps({
   icon: String,
   title: String,
   skills: Array,
 });
 
-// const observed = ref(null);
-// const image = useTemplateRef("image");
-// let observer = null;
-// onMounted(() => {
-//   const options = {
-//     root: null,
-//     rootMargin: "-40% 0px -20% 0px",
-//     threshold: 0.75,
-//   };
-//   observer = new IntersectionObserver((entries) => {
-//     entries.forEach((entry) => {
-//       if (entry.isIntersecting) {
+const article = useTemplateRef("article");
+const observer = inject("skillobserver");
+onMounted(() => {
+  observer.observe(article.value);
+});
 
-//         observed.value = entry.target;
-//         observed.value.classList.add("bigger");
-//         console.log(observed.value);
-//         observer.unobserve(observed.value);
-//       }
-//     });
-//   }, options);
-
-//   if (observed.value) observer.observe(observed.value);
-// });
+defineExpose({
+  title: props.title,
+});
 </script>
 
 <template>
-  <article class="skill">
+  <article class="skill" ref="article">
     <div class="skill-head">
-      <div class="skill-icon" ref="image">
+      <div class="skill-icon">
         <img :src="props.icon" :alt="props.icon" />
       </div>
 
@@ -56,6 +42,7 @@ const props = defineProps({
   justify-content: start;
   align-items: center;
   gap: 4px;
+  transition: transform 0.3s ease;
 }
 
 .skill-icon {
@@ -68,8 +55,7 @@ const props = defineProps({
 }
 
 .bigger {
-  width: 120px;
-  height: auto;
+  transform: scale(1.2);
 }
 
 .skill-head {

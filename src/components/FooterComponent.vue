@@ -34,10 +34,17 @@ const socials = [
     link: "https://www.linkedin.com/in/solomondavid-akesobia",
   },
 ];
+
+import { useTemplateRef, inject, onMounted } from "vue";
+const navobserver = inject("navobserver");
+const footer = useTemplateRef("footer");
+onMounted(() => {
+  navobserver.observe(footer.value);
+});
 </script>
 
 <template>
-  <footer :style="{ backgroundImage: backgroundUrl }">
+  <footer :style="{ backgroundImage: backgroundUrl }" id="footer" ref="footer">
     <div class="footer">
       <SectionHeading
         colorscheme="var(--white)"

@@ -2,9 +2,9 @@
 const props = defineProps({
   role: String,
   company: String,
-  start: Date,
-  end: Date,
-  achievements: [String],
+  start: String,
+  end: String,
+  achievements: Array,
 });
 </script>
 
