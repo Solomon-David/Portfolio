@@ -7,11 +7,11 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      "@assets": path.resolve(__dirname, "./src/assets"),
-      "@components": path.resolve(__dirname, "./src/components"),
-      "@views": path.resolve(__dirname, "./src/views"),
-      "@styles": path.resolve(__dirname, "./src/styles"),
-      "@helpers": path.resolve(__dirname, "./src/helpers"),
+      "@assets": path.resolve(__dirname, "/src/assets"),
+      "@components": path.resolve(__dirname, "/src/components"),
+      "@views": path.resolve(__dirname, "/src/views"),
+      "@styles": path.resolve(__dirname, "/src/styles"),
+      "@helpers": path.resolve(__dirname, "/src/helpers"),
     }
   }
 })
