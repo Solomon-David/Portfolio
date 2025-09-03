@@ -1,8 +1,8 @@
 <script setup>
 import { inject, ref, onMounted, watchEffect, useTemplateRef } from "vue";
 
-import menu from "@/assets/menu.svg";
-import close from "@/assets/Close.svg";
+import menu from "@assets/menu.svg";
+import close from "@assets/Close.svg";
 //checking screensize
 const isMobile = inject("isMobile");
 // toggling the menu
