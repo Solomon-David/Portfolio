@@ -307,7 +307,7 @@ section {
 }
 
 .imgwrp {
-  margin: auto;
+  margin: 0;
   border-radius: 200px;
   border: 1px solid #4338ca44;
   padding: 40px;
