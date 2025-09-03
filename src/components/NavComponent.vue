@@ -1,6 +1,8 @@
 <script setup>
 import { inject, ref, onMounted, watchEffect, useTemplateRef } from "vue";
 
+import menu from "@assets/menu.svg";
+import close from "@assets/Close.svg";
 //checking screensize
 const isMobile = inject("isMobile");
 // toggling the menu
@@ -37,10 +39,10 @@ onMounted(async () => {
     <div id="menu" v-if="isMobile">
       <button @click="toggleMenu">
         <span v-if="!open"
-          ><img src="@assets/menu.svg" alt="hamburger menu to open navigation bar" />
+          ><img :src="menu" alt="hamburger menu to open navigation bar" />
         </span>
         <span v-if="open"
-          ><img src="@assets/Close.svg" alt="X shaped button to close navigation bar"
+          ><img :src="close" alt="X shaped button to close navigation bar"
         /></span>
       </button>
     </div>
