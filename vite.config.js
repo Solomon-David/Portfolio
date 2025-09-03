@@ -13,9 +13,6 @@ export default defineConfig({
       "@styles": path.resolve(__dirname, "./src/styles"),
       "@helpers": path.resolve(__dirname, "./src/helpers"),
     }
-  },
-  build: {
-    assetsInlineLimit: 0
   }
-},
+}
 )
