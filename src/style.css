@@ -10,6 +10,7 @@
   /* font sizes */
   --heading-size: 24px;
   --body-size: 16px;
+  --medium-size: var(--body-size);
 
   /* colors */
   --primary: #4F46E5;
@@ -63,8 +64,6 @@ body {
   width: 15vh;
   }
   
-
-  
 .scrollable::-webkit-scrollbar:hover{
   width: 32px;
 }
@@ -79,11 +78,24 @@ body {
   background: var(--accent);
 }
 
+p {
+  margin:0;
+  font-size: var(--body-size);
+}
+
 .regular-section, .floating-card-section, footer{
   scroll-margin-top: 15vh;
 }
 
-p {
-  margin:0;
-  font-size: var(--body-size);
+@media (min-width: 450px) {
+  :root {
+      /* font sizes */
+  --heading-size: 32px;
+  --medium-size: 24px;
+  --body-size: 18px;
+  }
+
+  .regular-section, .floating-card-section{
+    
+  }
 }

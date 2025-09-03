@@ -1,8 +1,8 @@
 <script setup>
 import { inject, ref, onMounted, watchEffect, useTemplateRef } from "vue";
 
-const mobile = ref(visualViewport.width < 500);
-
+//checking screensize
+const isMobile = inject("isMobile");
 // toggling the menu
 let open = ref(false);
 const toggleMenu = () => {
@@ -34,7 +34,7 @@ onMounted(async () => {
 
 <template>
   <div id="navcomponent">
-    <div id="menu" v-if="mobile">
+    <div id="menu" v-if="isMobile">
       <button @click="toggleMenu">
         <span v-if="!open"
           ><img src="@assets/menu.svg" alt="hamburger menu to open navigation bar" />
@@ -46,7 +46,7 @@ onMounted(async () => {
     </div>
 
     <Transition name="slide">
-      <nav v-show="open || !mobile" ref="nav">
+      <nav v-show="open || !isMobile" ref="nav">
         <a @click="open = false" href="#hero">Home</a>
         <a @click="open = false" href="#about">About</a>
         <a @click="open = false" href="#skills">Skills</a>
@@ -62,6 +62,8 @@ onMounted(async () => {
 #navcomponent {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  height: 100%;
   align-items: end;
   gap: 3vh;
 }
@@ -101,13 +103,17 @@ nav a {
   font-weight: bold;
 }
 
-nav a:hover {
+nav a:hover,
+.current:hover {
   text-decoration: underline;
   text-decoration-thickness: 3px;
   text-underline-offset: 10px;
   text-decoration-color: var(--color);
 }
 
+.current:hover {
+  text-decoration-color: var(--primary);
+}
 .slide-enter-from,
 .slide-leave-to {
   transform-origin: top;
@@ -127,17 +133,13 @@ nav a:hover {
   transition: all 0.3s ease;
 }
 
-@media (min-width: 500px) {
+@media (min-width: 450px) {
   #navcomponent {
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
   }
 
   nav {
     flex-direction: row;
-    gap: 2rem;
+    gap: 1rem;
     align-items: center;
   }
 }

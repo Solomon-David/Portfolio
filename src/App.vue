@@ -1,11 +1,18 @@
 <script setup>
 import HomePage from "./views/Home.vue";
-import { ref, provide, onMounted, onUnmounted, useTemplateRef } from "vue";
+import { ref, provide, onMounted, onUnmounted, computed } from "vue";
+
+//checking screen size
+const width = ref(visualViewport ? visualViewport.width : innerWidth);
+const isMobile = computed(() => width.value < 450);
+const resized = () => {
+  width.value = visualViewport ? visualViewport.width : innerWidth;
+};
 
 //setting up skill observer
 const skilloptions = {
   root: null,
-  rootMargin: "-45% 0px -45% 0px",
+  rootMargin: "-55% 0px -45% 0px",
   threshold: 0,
 };
 
@@ -35,8 +42,11 @@ let navobserver = new IntersectionObserver((entries) => {
   });
 }, navoptions);
 
+onMounted(() => {
+  window.addEventListener("resize", resized);
+});
+
 //provided artefacts
-onMounted(() => {});
 const changeSection = (value) => {
   document.querySelector(value).scrollIntoView();
   // window.location.replace("#hero", "#" + value);
@@ -45,10 +55,12 @@ provide("skillobserver", skillobserver);
 provide("navobserver", navobserver);
 provide("currentSection", currentSection);
 provide("changeSection", changeSection);
+provide("isMobile", isMobile);
 
 onUnmounted(() => {
   navobserver.disconnect();
   skillobserver.disconnect();
+  window.RemoveEventListener("resize", resized);
 });
 </script>
 

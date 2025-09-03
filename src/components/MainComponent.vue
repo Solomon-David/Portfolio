@@ -21,11 +21,11 @@ import { ref, useTemplateRef, onMounted, inject } from "vue";
 
 //list of sections
 const sections = [
-  useTemplateRef("hero"),
-  useTemplateRef("about"),
-  useTemplateRef("skills"),
-  useTemplateRef("projects"),
-  useTemplateRef("experiences"),
+  useTemplateRef("heroRef"),
+  useTemplateRef("aboutRef"),
+  useTemplateRef("skillsRef"),
+  useTemplateRef("projectsRef"),
+  useTemplateRef("experiencesRef"),
 ];
 
 //defining skill objects and skill array
@@ -124,17 +124,21 @@ onMounted(() => {
 <template [style]="./../style.css">
   <main>
     <!-- Hero section -->
-    <regular-section id="hero" ref="hero" class="hero">
-      <div class="intros">
-        <p class="intro">Hello, I'm <span>Solomon</span>David</p>
-        <ChangingText fixed="Developer" :options="['web', 'mobile', 'desktop']" />
-        <p class="end">
-          A developer and instructor here to help you reach your every goal.
-        </p>
-      </div>
+    <regular-section id="hero" ref="heroRef" class="hero">
+      <div class="hero-top">
+        <div class="intros">
+          <p class="intro">Hello, I'm <span>Solomon</span>David</p>
+          <ChangingText fixed="Developer" :options="['web', 'mobile', 'desktop']" />
+          <p class="end">
+            A developer and instructor here to help you reach your every goal.
+          </p>
+        </div>
 
-      <div class="myimage">
-        <img :src="profile" alt="myimage" />
+        <div class="imgwrp">
+          <div class="myimage">
+            <img :src="profile" alt="myimage" />
+          </div>
+        </div>
       </div>
 
       <div class="contactme">
@@ -143,47 +147,47 @@ onMounted(() => {
     </regular-section>
 
     <!-- About section -->
-    <floating-card-section id="about" ref="about">
+    <floating-card-section id="about" ref="aboutRef">
       <section-heading>about me</section-heading>
-      <article>
-        <p>I am <b>SolomonDavid Akesobia</b> by name.</p>
-        <p>
-          I am based in the city of Port Harcourt, <b>Nigeria</b>, but open to remote
-          projects.
-        </p>
-        <p>
-          I began my development journey in <b>2018</b> when I started learning C++ in a
-          bid to understand the science behind how applications were built. Being mostly
-          interested in applications, I learned Java and later ventured into native
-          <b>Android</b> application development for a while before having to switch to
-          web development due to technological constraints.
-        </p>
-        <p>
-          As a web developer, I was always drawn more to logic than asthetics and soon
-          began learning backend development with NodeJS and Express. I ventured into full
-          stack development and dabbled in the MEAN stack until a project necessitated me
-          learning Vue, after which I fell in love with Vue's power and simplicity. Ever
-          since, I had stuck to the MEVN tech stack.
-        </p>
-        <p>
-          In a bid to expand my horizons, I tried my hand with ElectronJS for desktop
-          applications and NativeScript for mobile development. Dissatisfied with
-          Electron's performance tradeoffs and NativeScript's lack of maturity, I replaced
-          them with JavaFX and Kotlin respectively for a while, returning back to my JVM
-          roots. However, simultaneously learning multiple frameworks for different
-          platforms was tedious and so I needed to change my tech stack yet again. That's
-          when I discovered Flutter and stuck to it: a decision I am yet to regret!
-        </p>
-        <p>
-          Aside from being a developer, I have a B.Sc in <b>Computer Science</b> from the
-          Rivers State University.
-        </p>
-        <p>My hobbies include gaming, gymnastics, swimming, and reading.</p>
-      </article>
+      <div>
+        <article>
+          <p>
+            I am <b>SolomonDavid Akesobia</b> by name. I am based in the city of Port
+            Harcourt, <b>Nigeria</b>. I have a B.Sc in Computer Science from the Rivers
+            State University.
+          </p>
+          <p>
+            I began my development journey in <b>2018</b> when I started learning C++ in a
+            bid to understand the science behind how applications were built. Being mostly
+            interested in applications, I learned Java and later ventured into native
+            <b>Android</b> application development for a while before having to switch to
+            web development due to technological constraints.
+          </p>
+          <p>
+            As a web developer, I was always drawn more to logic than asthetics and soon
+            began learning backend development with <b>NodeJS</b> and Express. I ventured
+            into full stack development and dabbled in the MEAN stack until a project
+            necessitated me learning Vue, after which I fell in love with Vue's power and
+            simplicity. Ever since, I had stuck to the MEVN tech stack.
+          </p>
+          <p>
+            In a bid to expand my horizons, I tried my hand with <b>ElectronJS</b> for
+            desktop applications and NativeScript for mobile development. Dissatisfied
+            with Electron's performance tradeoffs and NativeScript's lack of maturity, I
+            replaced them with JavaFX and Kotlin respectively for a while, returning back
+            to my JVM roots. However, simultaneously learning multiple frameworks for
+            different platforms was tedious and so I needed to change my tech stack yet
+            again. That's when I discovered <b>Flutter</b> and stuck to it: a decision I
+            am yet to regret!
+          </p>
+
+          <p>My hobbies include gaming, gymnastics, swimming, and reading.</p>
+        </article>
+      </div>
     </floating-card-section>
 
     <!-- Skills -->
-    <regular-section id="skills" ref="skills">
+    <regular-section id="skills" ref="skillsRef">
       <section-heading subtitle="Here are some of my most prominent skills."
         >skills</section-heading
       >
@@ -199,7 +203,7 @@ onMounted(() => {
     </regular-section>
 
     <!-- Projects -->
-    <floating-card-section id="projects" ref="projects">
+    <floating-card-section id="projects" ref="projectsRef">
       <section-heading subtitle="Here are some projects I have worked on over the years."
         >projects</section-heading
       >
@@ -216,7 +220,7 @@ onMounted(() => {
       </div>
     </floating-card-section>
 
-    <regular-section id="experiences" ref="experiences">
+    <regular-section id="experiences" ref="experiencesRef">
       <section-heading subtitle="A few organizations I have worked with over the years">
         Experiences
       </section-heading>
@@ -236,18 +240,21 @@ onMounted(() => {
 
 <style scoped>
 main {
-  padding: 15vh 1rem 10vh;
+  padding: 12vh 5vw;
   height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   margin: 0;
   gap: 12vh;
 }
 
 section {
   width: 80vw;
+  margin: 0 auto;
+  justify-items: start;
+  row-gap: 2.5vh;
 }
 
 /* hero section*/
@@ -255,10 +262,23 @@ section {
 .hero {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: end;
   align-items: center;
-  gap: 100px;
+  margin: 0 auto;
+  gap: 32px;
   background: var(--white);
+}
+
+.hero-top {
+  display: inherit;
+  flex-direction: inherit;
+  gap: inherit;
+  justify-content: inherit;
+  align-items: inherit;
+  background: inherit;
+  padding: 0;
+  padding-left: 0;
+  width: 80%;
 }
 /* intro*/
 
@@ -278,31 +298,33 @@ section {
   gap: 8px;
 }
 
-.end {
-  width: 55vw;
-}
-
 .myimage {
-  width: 50vw;
-  transform: scale(1.25);
+  width: 250px;
   aspect-ratio: 1/1;
   border-radius: 200px;
-  outline: 1px solid var(--grey);
   background: var(--grey);
-  outline-offset: 20px;
-
   overflow: hidden;
+}
+
+.imgwrp {
+  margin: auto;
+  border-radius: 200px;
+  border: 1px solid #4338ca44;
+  padding: 40px;
 }
 
 .myimage img {
   width: 100%;
   max-height: inherit;
   object-fit: cover;
-  object-position: 0px -5vw;
+  object-position: 0px -20px;
   filter: saturate(0);
 }
 
 /* Contact me button*/
+.contactme {
+  margin-right: 0;
+}
 .contactme button {
   background-color: var(--primary);
   color: var(--white);
@@ -334,10 +356,10 @@ section {
 
 /*Skills*/
 .skills {
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   justify-content: space-between;
-  gap: 5vh;
+  gap: 10vh;
 }
 /* Projects */
 .projects {
@@ -350,8 +372,70 @@ section {
 
 /* Experiences */
 .experiences {
-  display: flex;
-  flex-direction: column;
-  gap: 3vh;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 5vh;
+}
+
+@media screen and (max-width: 374px) {
+  .myimage {
+    width: 150px;
+  }
+
+  .imgwrp {
+    padding: 20px;
+  }
+}
+
+@media (min-width: 450px) {
+  main {
+    padding: 20vh 2vw;
+    gap: 24vh;
+  }
+
+  section {
+    width: 90vw;
+  }
+
+  .hero {
+    padding: 5vh 0vw;
+    justify-content: end;
+    gap: 25px;
+    align-items: start;
+  }
+
+  .hero-top {
+    flex-direction: row;
+    width: max-content;
+    height: 290px;
+    gap: 24vw;
+  }
+
+  .intros {
+    gap: 8px;
+  }
+
+  .myimage {
+    width: 325px;
+  }
+
+  .imgwrp {
+    margin: 0;
+  }
+
+  .contactme button {
+    padding: 2.5vh 2vw;
+    font-size: var(--body-size);
+  }
+
+  /* skills */
+  .skills {
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 15vw;
+  }
+
+  .experiences {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 </style>

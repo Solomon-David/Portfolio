@@ -7,6 +7,8 @@ const props = defineProps({
   url: String,
   urlImage: String,
 });
+
+// create modal for project images when clicked
 </script>
 
 <template>
@@ -43,9 +45,19 @@ article {
   gap: 5vh;
 }
 .images {
-  width: 80vw;
+  width: 70vw;
+  height: 100%;
   position: relative;
   display: inline;
+  margin: 0;
+}
+
+.desktop {
+  width: 90%;
+  border: 1px solid grey;
+  border-radius: 5px;
+  padding: 1px;
+  background-color: #222222;
 }
 
 .desktop img {
@@ -53,11 +65,17 @@ article {
 }
 
 .mobile {
-  height: 80%;
+  background-color: #222222;
+  padding: 2.5px;
+  width: 15vw;
+  aspect-ratio: 1/1;
   position: absolute;
-  border-radius: 20px;
-  right: 1vw;
-  bottom: 1vh;
+  border: 2px solid grey;
+  padding-top: 5px;
+  padding-bottom: 7.5px;
+  border-radius: 10px;
+  right: 0;
+  bottom: -3vh;
 }
 
 .mobile img {
@@ -85,5 +103,17 @@ article {
 
 .urlimg {
   width: 2rem;
+}
+
+@media screen and (min-width: 450px) {
+  .images {
+    width: 60vw;
+  }
+
+  .mobile {
+    width: 10vw;
+    right: 0;
+    bottom: -0.5vh;
+  }
 }
 </style>

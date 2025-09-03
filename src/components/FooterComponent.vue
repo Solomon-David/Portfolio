@@ -4,11 +4,23 @@ import RegularSection from "@components/RegularSection.vue";
 import SectionHeading from "@components/SectionHeading.vue";
 import SMIcon from "@components/SMIcon.vue";
 
-const backgroundUrl = `url("${background}")`;
 import githubImage from "@assets/GitHub.svg";
 import whatsAppImage from "@assets/WhatsApp.svg";
 import gmailImage from "@assets/Gmail.svg";
 import linkedinImage from "@assets/LinkedIn.svg";
+
+const isMobile = inject("isMobile").value;
+let style = {};
+if (isMobile) {
+  style = {
+    backgroundImage: `url("${background}")`,
+    backgroundRepeat: "no-repeat",
+  };
+} else {
+  style = {
+    backgroundColor: "var(--accent)",
+  };
+}
 
 //socials
 
@@ -44,7 +56,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <footer :style="{ backgroundImage: backgroundUrl }" id="footer" ref="footer">
+  <footer :style="style" id="footer" ref="footer">
     <div class="footer">
       <SectionHeading
         colorscheme="var(--white)"
@@ -89,5 +101,16 @@ footer {
   align-items: center;
   width: 100%;
   justify-content: space-evenly;
+}
+
+@media screen and (min-width: 450px) {
+  .footer {
+    padding: 2.5% 10% 5%;
+  }
+
+  .icons {
+    gap: 4vw;
+    justify-content: center;
+  }
 }
 </style>

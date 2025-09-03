@@ -27,12 +27,12 @@ const height = ref("2vh");
 
 <style scoped>
 header {
-  padding: 2vh 5vw;
-  display: flex;
-  flex-direction: row;
+  padding: 1vh 5vw 2vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   width: 90vw;
-  height: 8vh;
   justify-content: space-between;
+  align-items: start;
   background-color: var(--background);
   position: fixed;
   top: 0;
@@ -63,5 +63,13 @@ header {
 .grow-enter-active,
 .grow-leave-active {
   transition: all 0.3s ease;
+}
+
+@media screen and (min-width: 450px) {
+  header {
+    grid-template-columns: 1fr 1fr 1fr;
+    padding: 2vh 3vw;
+    justify-content: center;
+  }
 }
 </style>

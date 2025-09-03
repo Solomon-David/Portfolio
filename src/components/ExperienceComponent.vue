@@ -28,7 +28,7 @@ const props = defineProps({
 .experience {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
   gap: 1vw;
 }
 
@@ -76,5 +76,12 @@ const props = defineProps({
 
 .experience-list li::marker {
   color: var(--primary);
+}
+
+@media screen and (min-width: 450px) {
+  .experience-list {
+    align-items: start;
+    margin-left: 3%;
+  }
 }
 </style>

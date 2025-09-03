@@ -9,8 +9,8 @@
 <style>
 .floating-card-section {
   position: relative;
-  padding: 1rem;
-
+  padding: 4vh 5vw;
+  width: 70vw !important;
   border: 1px solid var(--grey);
   border-radius: 10px;
 
@@ -28,5 +28,12 @@ p {
 
 p::last-of-type {
   margin-bottom: 0;
+}
+
+@media (min-width: 450px) {
+  .floating-card-section {
+    width: 60vw !important;
+    gap: 4vh;
+  }
 }
 </style>
