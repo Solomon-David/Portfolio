@@ -73,7 +73,7 @@ const projects = [
     mobileImage: SRASMobile,
     title: "SRAS",
     description:
-      "A course reporting and result assessing system for students and lecturers",
+      "A course reporting and result assessing system for students and lecturers. Developed using Vue, ExpressJS, and MySQL.",
     url: "https://frank-ezeilo-s-project.onrender.com",
   },
   {
@@ -81,7 +81,7 @@ const projects = [
     mobileImage: WeTechMobile,
     title: "WeTech",
     description:
-      "A micro-blogging platform for techies. Co-created by I and my colleagues during my Industrial Training at Harvoxx Tech Hub.",
+      "A micro-blogging platform for techies. Co-created by I and my colleagues during my Industrial Training at Harvoxx Tech Hub. The backend was co-developed by me using Express, Mongoose, and EJS.",
     url: "wetech-p7y7.onrender.com/home",
   },
 ];
@@ -94,8 +94,8 @@ const experiences = [
     start: "February 2025",
     end: "May 2025",
     achievements: [
-      "Instructed children on desktop, web, and native Android development",
-      "Assisted and supervised trainees and staff on installation of software packages",
+      "Instructed students aged 8–15 in desktop, web, and native Android application development.",
+      "Guided and supported trainees and staff in the installation and configuration of software packages.",
     ],
   },
   {
@@ -104,8 +104,9 @@ const experiences = [
     start: "May 2023",
     end: "December 2023",
     achievements: [
-      "Learned and taught frontend technologies including CSS and JavaScript",
-      "Collaborated in group projects",
+      "Studied and delivered instruction on front-end technologies including CSS and JavaScript.",
+      "Contributed to team-based projects through active collaboration.",
+      "Provided peer tutoring to address knowledge gaps and reinforce learning.",
     ],
   },
 ];
@@ -152,36 +153,35 @@ onMounted(() => {
       <div>
         <article>
           <p>
-            I am <b>SolomonDavid Akesobia</b> by name. I am based in the city of Port
-            Harcourt, <b>Nigeria</b>. I have a B.Sc in Computer Science from the Rivers
-            State University.
-          </p>
-          <p>
-            I began my development journey in <b>2018</b> when I started learning C++ in a
-            bid to understand the science behind how applications were built. Being mostly
-            interested in applications, I learned Java and later ventured into native
-            <b>Android</b> application development for a while before having to switch to
-            web development due to technological constraints.
-          </p>
-          <p>
-            As a web developer, I was always drawn more to logic than asthetics and soon
-            began learning backend development with <b>NodeJS</b> and Express. I ventured
-            into full stack development and dabbled in the MEAN stack until a project
-            necessitated me learning Vue, after which I fell in love with Vue's power and
-            simplicity. Ever since, I had stuck to the MEVN tech stack.
-          </p>
-          <p>
-            In a bid to expand my horizons, I tried my hand with <b>ElectronJS</b> for
-            desktop applications and NativeScript for mobile development. Dissatisfied
-            with Electron's performance tradeoffs and NativeScript's lack of maturity, I
-            replaced them with JavaFX and Kotlin respectively for a while, returning back
-            to my JVM roots. However, simultaneously learning multiple frameworks for
-            different platforms was tedious and so I needed to change my tech stack yet
-            again. That's when I discovered <b>Flutter</b> and stuck to it: a decision I
-            am yet to regret!
+            I am <b>SolomonDavid Akesobia-Nkom</b>, a developer based in Port Harcourt,
+            <b>Nigeria</b>, with a B.Sc. in Computer Science from Rivers State University.
           </p>
 
-          <p>My hobbies include gaming, gymnastics, swimming, and reading.</p>
+          <p>
+            I have been a programmer since <b>2018</b> when I started learning C++ and
+            Java before moving on to <b>Web Development</b>. Drawn to backend logic, I
+            learned <b>NodeJS</b> and <b>Express</b>. I have explored several Frontend
+            technologies and finally settled with Vue due to it's ease of use and
+            integration.
+          </p>
+
+          <p>
+            Aside from being a web developer, I have experience with <b>ElectronJS</b> and
+            Native Android development. Managing multiple frameworks was demanding, so I
+            adopted <b>Flutter</b> as my cross-platform solution, and it has been my
+            choice ever since.
+          </p>
+
+          <p>
+            Aside from coding, I am also an <b>Instructor</b> capable of handling
+            one-on-one and group tutorials. I specialize in coding and mathematics and can
+            handle both children and adults.
+          </p>
+
+          <p>
+            When I am not coding, I enjoy gaming, gymnastics, martial arts tricking,
+            swimming, and reading.
+          </p>
         </article>
       </div>
     </floating-card-section>
@@ -222,7 +222,7 @@ onMounted(() => {
 
     <regular-section id="experiences" ref="experiencesRef">
       <section-heading subtitle="A few organizations I have worked with over the years">
-        Experiences
+        Experience
       </section-heading>
       <div class="experiences">
         <ExperienceComponent
