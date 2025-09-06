@@ -66,10 +66,11 @@ const props = defineProps({
 .experience-list {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
 }
 
 .experience-list li {
+  margin-left: 15px;
   width: 80%;
   position: relative;
 }
@@ -81,7 +82,11 @@ const props = defineProps({
 @media screen and (min-width: 450px) {
   .experience-list {
     align-items: start;
-    margin-left: 3%;
+    margin-left: 0;
+  }
+
+  .experience-list li {
+    margin-left: 20px;
   }
 }
 </style>

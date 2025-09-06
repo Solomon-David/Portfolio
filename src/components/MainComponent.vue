@@ -158,24 +158,24 @@ onMounted(() => {
           </p>
 
           <p>
-            I have been a programmer since <b>2018</b> when I started learning C++ and
-            Java before moving on to <b>Web Development</b>. Drawn to backend logic, I
-            learned <b>NodeJS</b> and <b>Express</b>. I have explored several Frontend
-            technologies and finally settled with Vue due to it's ease of use and
-            integration.
+            I have been a programming since <b>2018</b>, when I started learning C++ and
+            Java before moving into <b>Web Development</b>. Drawn to backend logic, I
+            learned <b>NodeJS</b> and <b>Express</b>. Over time, I explored several
+            frontend technologies and eventually settled on Vue due to its ease of use and
+            seamless integration.
           </p>
 
           <p>
-            Aside from being a web developer, I have experience with <b>ElectronJS</b> and
-            Native Android development. Managing multiple frameworks was demanding, so I
-            adopted <b>Flutter</b> as my cross-platform solution, and it has been my
-            choice ever since.
+            Web development aside, I also played around with <b>ElectronJS</b> and Java
+            for desktop application and native Android development respectively. In order
+            to use a single technology for both platforms, I adopted <b>Flutter</b> as my
+            cross-platform solution, and it has been my choice ever since.
           </p>
 
           <p>
             Aside from coding, I am also an <b>Instructor</b> capable of handling
             one-on-one and group tutorials. I specialize in coding and mathematics and can
-            handle both children and adults.
+            tutor both children and adults.
           </p>
 
           <p>

@@ -19,7 +19,7 @@
   justify-content: center;
   align-items: center;
   gap: 1vh;
-  box-shadow: 0 4px 4px 0 var(--grey);
+  box-shadow: 0 2px 1px 0 var(--grey);
 }
 
 p {
