@@ -68,14 +68,13 @@ import WeTechMobile from "@assets/WeTechMobile.png";
 import TrackFastMobile from "@assets/TrackfastMobile.png";
 import TrackFastPC from "@assets/TrackfastPC.png";
 
-
 const projects = [
   {
     desktopImage: SRASPC,
     mobileImage: SRASMobile,
     title: "SRAS",
     description:
-    "A course reporting and result assessing system for students and lecturers. Developed using Vue, ExpressJS, and MySQL.",
+      "A course reporting and result assessing system for students and lecturers. Developed using Vue, ExpressJS, and MySQL.",
     url: "https://frank-ezeilo-s-project.onrender.com",
   },
   {
@@ -83,16 +82,17 @@ const projects = [
     mobileImage: WeTechMobile,
     title: "WeTech",
     description:
-    "A micro-blogging platform for techies. Co-created by I and my colleagues during my Industrial Training at Harvoxx Tech Hub. The backend was co-developed by me using Express, Mongoose, and EJS.",
+      "A micro-blogging platform for techies. Co-created by I and my colleagues during my Industrial Training at Harvoxx Tech Hub. The backend was co-developed by me using Express, Mongoose, and EJS.",
     url: "wetech-p7y7.onrender.com/home",
   },
   {
     desktopImage: TrackFastPC,
     mobileImage: TrackFastMobile,
     title: "TrackFast",
-    description: "A delivery tracking system for customers and delivery agents. It calculates costs using the actual distance between the locations and provides a 3-layer RBAC. \n Developed using Vuetify, Express, and MongoDB.",
-    url: "https://trackfast-frontend.onrender.com"
-  }
+    description:
+      "A delivery tracking system for customers and delivery agents. It calculates costs using the actual distance between the locations and provides a 3-layer RBAC. \n Developed using Vuetify, Express, and MongoDB.",
+    url: "https://trackfast-frontend.onrender.com",
+  },
 ];
 
 //Experience
@@ -176,9 +176,10 @@ onMounted(() => {
           </p>
 
           <p>
-            Beyond web development, I have worked with <b>ElectronJS</b> and Java
-            for desktop application and native Android development respectively. To unify development for both platforms, I adopted <b>Flutter</b> as my
-            cross-platform solution, and it has been my preferred choice ever since.
+            Beyond web development, I have worked with <b>ElectronJS</b> and Java for
+            desktop application and native Android development respectively. To unify
+            development for both platforms, I adopted <b>Flutter</b> as my cross-platform
+            solution, and it has been my preferred choice ever since.
           </p>
 
           <p>
