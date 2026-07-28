@@ -68,7 +68,7 @@ import WeTechMobile from "@assets/WeTechMobile.png";
 import TrackFastMobile from "@assets/TrackfastMobile.png";
 import TrackFastPC from "@assets/TrackfastPC.png";
 import FintrackMobile from "@assets/Fintrack-mobile.jpeg";
-import FintrackDestkop from "@assets/Fintrack-desktop.png";
+import FintrackDesktop from "@assets/Fintrack-desktop.png";
 
 const projects = [
   {
