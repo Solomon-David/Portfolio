@@ -98,7 +98,7 @@ const projects = [
   {
     desktopImage: FintrackDesktop,
     mobileImage: FintrackMobile,
-    title: Fintrack,
+    title: "Fintrack",
     description:
       "FinTrack is a full-stack personal finance management application for tracking income, expenses, recurring bills, savings plans, and periodic financial summaries. /n It is built as an installable Progressive Web App (PWA) with a Vue 3 frontend and an Express/MongoDB backend.",
     url: "https://fin-track-three-coral.vercel.app/",
