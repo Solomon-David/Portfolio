@@ -67,6 +67,8 @@ import WeTechPC from "@assets/WeTechPC.png";
 import WeTechMobile from "@assets/WeTechMobile.png";
 import TrackFastMobile from "@assets/TrackfastMobile.png";
 import TrackFastPC from "@assets/TrackfastPC.png";
+import FintrackMobile from "@assets/Fintrack-mobile.jpeg";
+import FintrackDestkop from "@assets/Fintrack-desktop.png";
 
 const projects = [
   {
@@ -92,6 +94,14 @@ const projects = [
     description:
       "A delivery tracking system for customers and delivery agents. It calculates costs using the actual distance between the locations and provides a 3-layer RBAC. \n Developed using Vuetify, Express, and MongoDB.",
     url: "https://trackfast-frontend.onrender.com",
+  },
+  {
+    desktopImage: FintrackDesktop,
+    mobileImage: FintrackMobile,
+    title: Fintrack,
+    description:
+      "FinTrack is a full-stack personal finance management application for tracking income, expenses, recurring bills, savings plans, and periodic financial summaries. /n It is built as an installable Progressive Web App (PWA) with a Vue 3 frontend and an Express/MongoDB backend.",
+    url: "https://fin-track-three-coral.vercel.app/",
   },
 ];
 
