@@ -100,7 +100,7 @@ const projects = [
     mobileImage: FintrackMobile,
     title: "Fintrack",
     description:
-      "FinTrack is a full-stack personal finance management application for tracking income, expenses, recurring bills, savings plans, and periodic financial summaries. /n It is built as an installable Progressive Web App (PWA) with a Vue 3 frontend and an Express/MongoDB backend.",
+      "FinTrack is a full-stack personal finance management application for tracking income, expenses, recurring bills, savings plans, and periodic financial summaries. \n It is built as an installable Progressive Web App (PWA) with a Vue 3 frontend and an Express/MongoDB backend.",
     url: "https://fin-track-three-coral.vercel.app/",
   },
 ];
@@ -149,7 +149,7 @@ onMounted(() => {
       <div class="hero-top">
         <div class="intros">
           <p class="intro">Hello, I'm <span>Solomon</span>David</p>
-          <ChangingText fixed="Developer" :options="['web', 'mobile', 'desktop']" />
+          <ChangingText fixed="Developer" :options="['Web', 'Mobile', 'Desktop']" />
           <p class="end">
             A developer and instructor here to help you reach your every goal.
           </p>
@@ -229,7 +229,7 @@ onMounted(() => {
       >
       <div class="projects scrollable">
         <ProjectComponent
-          v-for="project in projects"
+          v-for="project in projects.slice().reverse()"
           :title="project.title"
           :url="project.url"
           :description="project.description"
