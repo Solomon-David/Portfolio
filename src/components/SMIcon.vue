@@ -10,6 +10,7 @@ a {
 }
 img {
   width: 40px;
+  padding: 15px;
 }
 </style>
 

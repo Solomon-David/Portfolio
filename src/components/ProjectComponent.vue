@@ -14,7 +14,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <article>
+  <article class="project-card">
     <div class="images">
       <ExpandableImage
         type="desktop"
@@ -30,9 +30,14 @@ const props = defineProps({
 
     <div class="text">
       <div class="title">
-        <a :href="props.url">
+        <a
+          class="title-link"
+          :href="props.url.startsWith('http') ? props.url : `https://${props.url}`"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <h3>{{ props.title }}</h3>
-          <img class="urlimg" :src="props.urlImage" :alt="props.urlImage" />
+          <img class="urlimg" :src="props.urlImage" alt="" />
         </a>
       </div>
 
@@ -44,7 +49,14 @@ const props = defineProps({
 </template>
 
 <style>
+.project-card {
+  scroll-snap-align: start;
+
+  flex: 0 0 80vw;
+}
+
 article {
+  width: 80vw;
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
@@ -62,27 +74,73 @@ article {
   justify-self: end;
 }
 
+.title-link {
+  width: fit-content;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+
+  color: inherit;
+  text-decoration: none;
+}
+
+.title-link h3 {
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 .title a {
   width: fit-content;
   display: flex;
-  gap: 2vw;
-  text-decoration: none;
-  border-bottom: 1px solid var(--text-grey);
-  padding-bottom: 1px;
+  align-items: center;
+  gap: 0.5rem;
+
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+
+  transition: opacity 0.2s ease;
+}
+
+.title a:hover {
+  opacity: 0.8;
 }
 
 .text {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  max-width: 100%;
+}
+
+.project-link {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  word-break: break-word;
+}
+
+.project-link:hover {
+  opacity: 0.8;
 }
 
 .urlimg {
-  width: 2rem;
+  width: 1rem;
+  height: 1rem;
+  object-fit: contain;
+}
+
+.desc p {
+  max-width: 100%;
 }
 
 @media screen and (min-width: 450px) {
   .images {
+    width: 60vw;
+  }
+
+  .project-card {
+    flex: 0 0 60vw;
     width: 60vw;
   }
 }

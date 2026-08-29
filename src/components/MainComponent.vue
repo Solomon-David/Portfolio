@@ -17,7 +17,7 @@ import desktopIcon from "@assets/desktop.svg";
 import othersIcon from "@assets/others.svg";
 
 //vue components
-import { ref, useTemplateRef, onMounted, inject } from "vue";
+import { ref, useTemplateRef, onMounted, inject, nextTick } from "vue";
 
 //list of sections
 const sections = [
@@ -48,7 +48,7 @@ const databases = {
 const desktop = {
   icon: desktopIcon,
   title: "desktop",
-  skills: ["ElectronJS", "Flutter"],
+  skills: ["ElectronJS", "Flutter", "JavaFX"],
 };
 const others = {
   icon: othersIcon,
@@ -85,7 +85,7 @@ const projects = [
     title: "WeTech",
     description:
       "A micro-blogging platform for techies. Co-created by I and my colleagues during my Industrial Training at Harvoxx Tech Hub. The backend was co-developed by me using Express, Mongoose, and EJS.",
-    url: "wetech-p7y7.onrender.com/home",
+    url: "https://wetech-p7y7.onrender.com/home",
   },
   {
     desktopImage: TrackFastPC,
@@ -100,10 +100,62 @@ const projects = [
     mobileImage: FintrackMobile,
     title: "Fintrack",
     description:
-      "FinTrack is a full-stack personal finance management application for tracking income, expenses, recurring bills, savings plans, and periodic financial summaries. \n It is built as an installable Progressive Web App (PWA) with a Vue 3 frontend and an Express/MongoDB backend.",
+      "FinTrack is a personal finance management application for tracking income, expenses, recurring bills, savings plans, and periodic financial summaries. \n It is built as an installable Progressive Web App (PWA) with a Vue, Express, and MongoDB.",
     url: "https://fin-track-three-coral.vercel.app/",
   },
 ];
+
+const projectsContainer = ref(null);
+
+const showLeft = ref(false);
+const showRight = ref(true);
+
+function handleProjectScroll() {
+  const container = projectsContainer.value;
+
+  if (!container) return;
+
+  const scrollLeft = container.scrollLeft;
+  const maxScrollLeft = container.scrollWidth - container.clientWidth;
+  const firstCard = container.querySelector(".project-card");
+  const lastCard = container.querySelector(".project-card:last-of-type");
+
+  showLeft.value = scrollLeft > 10;
+
+  if (lastCard) {
+    const containerRect = container.getBoundingClientRect();
+    const lastCardRect = lastCard.getBoundingClientRect();
+    const isLastCardVisible =
+      lastCardRect.right > containerRect.left + 10 &&
+      lastCardRect.left < containerRect.right - 10;
+
+    showRight.value = !isLastCardVisible && scrollLeft < maxScrollLeft - 10;
+    return;
+  }
+
+  showRight.value = scrollLeft < maxScrollLeft - 10;
+}
+
+function scrollProjects(direction) {
+  const container = projectsContainer.value;
+
+  if (!container) return;
+
+  const firstCard = container.querySelector(".project-card");
+  const lastCard = container.querySelector(".project-card:last-of-type");
+
+  const scrollAmount = firstCard?.offsetWidth || container.clientWidth * 0.8;
+
+  container.scrollBy({
+    left: direction === "right" ? scrollAmount : -scrollAmount,
+    behavior: "smooth",
+  });
+}
+
+onMounted(async () => {
+  await nextTick();
+  handleProjectScroll();
+});
 
 //Experience
 import ExperienceComponent from "./ExperienceComponent.vue";
@@ -173,34 +225,43 @@ onMounted(() => {
       <div>
         <article>
           <p>
-            I am <b>SolomonDavid Akesobia-Nkom</b>, a developer based in Port Harcourt,
-            <b>Nigeria</b>, with a B.Sc. in Computer Science from Rivers State University.
+            I am <b>SolomonDavid Akesobia-Nkom</b>, a software developer based in Port
+            Harcourt, <b>Nigeria</b>, with a Bachelor's degree in Computer Science from
+            Rivers State University. I am passionate about building efficient, scalable,
+            and user-focused digital solutions that solve real-world problems.
           </p>
 
           <p>
-            I have been a programming since <b>2018</b>, when I started learning C++ and
-            Java before moving into <b>Web Development</b>. Drawn to backend logic, I
-            learned <b>NodeJS</b> and <b>Express</b>. Over time, I explored several
-            frontend technologies and eventually settled on Vue due to its ease of use and
-            seamless integration.
+            My programming journey began in 2018 with <b>C++</b> and <b>Java</b>, laying a
+            strong foundation in software engineering principles before transitioning into
+            <b>web development</b>. Fascinated by application architecture and backend
+            systems, I expanded my expertise with <b>Node.js</b> and <b>Express</b>. Along
+            the way, I explored a variety of frontend technologies and ultimately chose
+            <b>Vue.js</b> for its simplicity, flexibility, and seamless developer
+            experience.
           </p>
 
           <p>
-            Beyond web development, I have worked with <b>ElectronJS</b> and Java for
-            desktop application and native Android development respectively. To unify
-            development for both platforms, I adopted <b>Flutter</b> as my cross-platform
-            solution, and it has been my preferred choice ever since.
+            Beyond web technologies, I have developed desktop and mobile applications
+            using <b>Electron.js</b> and native Android development with <b>Java</b>.
+            Seeking a unified approach to cross-platform development, I adopted
+            <b>Flutter</b>, which has since become my preferred framework for building
+            high-performance applications across multiple platforms.
           </p>
 
           <p>
-            Aside from coding, I am also an <b>Instructor</b> capable of handling
-            one-on-one and group tutorials. I specialize in coding and mathematics and can
-            tutor both children and adults.
+            In addition to software development, I am an experienced
+            <b>programming</b> and <b>mathematics</b> instructor. I have successfully
+            delivered both one-on-one and group training sessions for learners of varying
+            ages and skill levels, helping them build confidence and competence in their
+            chosen fields.
           </p>
 
           <p>
-            When I am not coding, I enjoy gaming, gymnastics, martial arts tricking,
-            swimming, and reading.
+            Outside of technology, I enjoy gaming, gymnastics, martial arts tricking,
+            swimming, and reading. These interests help me maintain a balanced lifestyle
+            while fostering the discipline, creativity, and problem-solving mindset that I
+            bring to every project.
           </p>
         </article>
       </div>
@@ -224,12 +285,18 @@ onMounted(() => {
 
     <!-- Projects -->
     <floating-card-section id="projects" ref="projectsRef">
-      <section-heading subtitle="Here are some projects I have worked on over the years."
-        >projects</section-heading
+      <section-heading subtitle="Here are some projects I have worked on over the years.">
+        projects
+      </section-heading>
+
+      <div
+        class="projects scrollable"
+        ref="projectsContainer"
+        @scroll="handleProjectScroll"
       >
-      <div class="projects scrollable">
         <ProjectComponent
           v-for="project in projects.slice().reverse()"
+          :key="project.title"
           :title="project.title"
           :url="project.url"
           :description="project.description"
@@ -237,6 +304,50 @@ onMounted(() => {
           :mobileImage="project.mobileImage"
           :urlImage="arrow"
         />
+      </div>
+
+      <div class="project-nav">
+        <button
+          :class="{ visible: !showLeft }"
+          class="nav-btn"
+          @click="scrollProjects('left')"
+          aria-label="Previous project"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="15 18 9 12 15 6" />
+          </svg>
+        </button>
+
+        <button
+          :class="{ visible: !showRight }"
+          class="nav-btn"
+          @click="scrollProjects('right')"
+          aria-label="Next project"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            width="24"
+            height="24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="3"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <polyline points="9 18 15 12 9 6" />
+          </svg>
+        </button>
       </div>
     </floating-card-section>
 
@@ -268,6 +379,7 @@ main {
   align-items: stretch;
   margin: 0;
   gap: 12vh;
+  overflow-x: hidden;
 }
 
 section {
@@ -384,26 +496,75 @@ section {
 /* Projects */
 .projects {
   width: 100%;
+  height: max-content;
   display: flex;
-  justify-content: start;
-  gap: 5vw;
+  justify-content: space-evenly;
   overflow-x: scroll;
+  scroll-behavior: smooth;
+
+  scroll-snap-type: x mandatory;
+}
+
+.projects::-webkit-scrollbar {
+  display: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.project-nav {
+  display: flex;
+  justify-content: center;
+  gap: 10vw;
+  margin-top: 1.5rem;
+}
+
+.nav-btn {
+  width: 48px;
+  height: 48px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  transition: all 0.2s ease;
+  background: var(--primary);
+}
+
+.nav-btn svg {
+  width: 24px;
+  height: 24px;
+  stroke: white;
+}
+
+.nav-btn:hover {
+  transform: translateY(-2px);
+}
+
+.visible {
+  visibility: hidden;
 }
 
 /* Experiences */
 .experiences {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 5vh;
+}
+
+.experiences article {
+  max-width: fit-content;
 }
 
 @media screen and (max-width: 374px) {
   .myimage {
-    width: 150px;
+    width: 75vw;
   }
 
   .imgwrp {
     padding: 20px;
+    margin-bottom: 5vh;
   }
 }
 

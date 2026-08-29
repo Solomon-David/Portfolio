@@ -43,7 +43,7 @@ const socials = [
   {
     title: "LinkedIn",
     image: linkedinImage,
-    link: "https://www.linkedin.com/in/solomondavid-akesobia",
+    link: "https://www.linkedin.com/in/solomondavid-akesobiankom",
   },
 ];
 

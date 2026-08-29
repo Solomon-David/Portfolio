@@ -87,7 +87,7 @@ nav {
   flex-direction: column;
   gap: 1.5rem;
   background-color: var(--background);
-  padding-left: 5vw;
+  padding-right: 10vw;
   padding-bottom: 2vh;
   border-radius: 16px;
   align-items: end;
@@ -136,11 +136,9 @@ nav a:hover,
 }
 
 @media (min-width: 450px) {
-  #navcomponent {
-  }
-
   nav {
     flex-direction: row;
+    padding-right: 0;
     gap: 1rem;
     align-items: center;
   }
