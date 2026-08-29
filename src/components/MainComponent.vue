@@ -100,7 +100,7 @@ const projects = [
     mobileImage: FintrackMobile,
     title: "Fintrack",
     description:
-      "FinTrack is a personal finance management application for tracking income, expenses, recurring bills, savings plans, and periodic financial summaries. \n It is built as an installable Progressive Web App (PWA) with a Vue, Express, and MongoDB.",
+      "FinTrack is a personal finance management application for tracking income, expenses, recurring bills, savings plans, and periodic financial summaries. \n Built as an installable Progressive Web App (PWA) with a Vue, Express, and MongoDB.",
     url: "https://fin-track-three-coral.vercel.app/",
   },
 ];
@@ -496,19 +496,10 @@ section {
 /* Projects */
 .projects {
   width: 100%;
-  height: max-content;
+  height: 100%;
   display: flex;
-  justify-content: space-evenly;
   overflow-x: scroll;
   scroll-behavior: smooth;
-
-  scroll-snap-type: x mandatory;
-}
-
-.projects::-webkit-scrollbar {
-  display: none;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
 
 .project-nav {

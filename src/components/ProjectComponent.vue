@@ -131,7 +131,7 @@ article {
 }
 
 .desc p {
-  max-width: 100%;
+  max-width: 85%;
 }
 
 @media screen and (min-width: 450px) {
