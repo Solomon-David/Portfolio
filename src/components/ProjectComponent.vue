@@ -48,7 +48,7 @@ const props = defineProps({
   </article>
 </template>
 
-<style>
+<style scoped>
 .project-card {
   scroll-snap-align: start;
 

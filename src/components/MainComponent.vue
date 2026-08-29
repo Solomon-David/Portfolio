@@ -491,7 +491,7 @@ section {
   display: grid;
   grid-template-columns: 1fr;
   justify-content: space-between;
-  gap: 10vh;
+  gap: 5vh;
 }
 /* Projects */
 .projects {
@@ -613,6 +613,7 @@ section {
   .skills {
     grid-template-columns: repeat(3, 1fr);
     column-gap: 15vw;
+    margin-top: 5vh;
   }
 
   .experiences {

@@ -6,7 +6,7 @@
 
 <script setup></script>
 
-<style>
+<style scoped>
 .floating-card-section {
   position: relative;
   padding: 4vh 5vw;

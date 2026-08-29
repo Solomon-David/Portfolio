@@ -4,7 +4,7 @@
   </a>
 </template>
 
-<style>
+<style scoped>
 a {
   width: fit-content;
 }
