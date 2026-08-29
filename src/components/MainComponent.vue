@@ -551,6 +551,7 @@ section {
 .experiences {
   display: grid;
   grid-template-columns: 1fr;
+  gap: 2vh;
 }
 
 .experiences article {
@@ -618,6 +619,7 @@ section {
 
   .experiences {
     grid-template-columns: 1fr 1fr;
+    gap: 10vw;
   }
 }
 </style>

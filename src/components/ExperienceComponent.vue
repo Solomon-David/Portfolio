@@ -35,7 +35,7 @@ const props = defineProps({
 .experience-head {
   display: flex;
   flex-direction: column;
-  /* text-wrap: nowrap; */
+  gap: 1vh;
   line-height: 1;
 }
 
